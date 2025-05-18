@@ -3,27 +3,43 @@ package itnetwork;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Třída SpravcePojistenych slouží jako správce seznamu pojištěných osob.
+ * Poskytuje metody pro přidání, vyhledání a zobrazení všech pojištěných.
+ */
 public class SpravcePojistenych {
     private ArrayList<PojistenaOsoba> pojisteneOsoby;  // Seznam všech pojištěných osob
-    Scanner scanner = new Scanner(System.in);
 
-    // Konstruktor pro inicializaci seznamu pojištěných osob
+    /**
+     * Konstruktor, který inicializuje seznam pojištěných osob.
+     */
     public SpravcePojistenych() {
         pojisteneOsoby = new ArrayList<>();
     }
 
-    // Metoda pro přidání nového pojištěného do seznamu
+    /**
+     * Přidá novou pojištěnou osobu do seznamu.
+     *
+     * @param jmeno Jméno pojištěné osoby
+     * @param prijmeni Příjmení pojištěné osoby
+     * @param vek Věk pojištěné osoby
+     * @param telefonniCislo Telefonní číslo pojištěné osoby
+     */
     public void pridatPojisteneho(String jmeno, String prijmeni, int vek, String telefonniCislo) {
+        System.out.println("Přidávám pojištěného: " + jmeno + " " + prijmeni);
         pojisteneOsoby.add(new PojistenaOsoba(jmeno, prijmeni, vek, telefonniCislo));
     }
 
-    // Metoda pro vyhledání pojištěného podle jména a příjmení
-    public ArrayList<PojistenaOsoba> vyhledatPojisteneho() {
+    /**
+     * Vyhledá pojištěné osoby podle jména a příjmení.
+     * Vyhledávání je přesné – rozlišuje velikost písmen.
+     *
+     * @param jmeno Jméno hledané osoby
+     * @param prijmeni Příjmení hledané osoby
+     * @return Seznam nalezených pojištěných osob odpovídajících zadaným údajům
+     */
+    public ArrayList<PojistenaOsoba> vyhledatPojisteneho(String jmeno, String prijmeni) {
         ArrayList<PojistenaOsoba> nalezene = new ArrayList<>();
-        System.out.println("Zadej jméno pojištěného:");
-        String jmeno = scanner.nextLine();
-        System.out.println("Zadej příjmení pojištěného:");
-        String prijmeni = scanner.nextLine();
 
         // Prochází seznam pojištěných a hledá osoby, které odpovídají zadaným údajům
         for (PojistenaOsoba pojistenaOsoba : pojisteneOsoby) {
@@ -34,16 +50,12 @@ public class SpravcePojistenych {
     return nalezene;
     }
 
-    // Metoda pro zobrazení seznamu všech pojištěných osob
+    /**
+     * Vrátí celý seznam pojištěných osob.
+     *
+     * @return Seznam všech pojištěných osob
+     */
     public ArrayList<PojistenaOsoba> zobrazitSeznamPojistenych() {
-        if (pojisteneOsoby.isEmpty()) {
-            System.out.println("Seznam pojištěných je prázdý");
-        } else {
-            System.out.println("Seznam pojištěných: ");
-            for (PojistenaOsoba pojistenaOsoba : pojisteneOsoby) {
-                System.out.println(pojistenaOsoba);
-            }
-        }
         return pojisteneOsoby;
     }
 }
