@@ -63,7 +63,7 @@ public class VstupUzivatele {
             jmeno = scanner.nextLine().trim();
             if (jmeno.isEmpty()) {
                 System.out.println("Jméno nesmí být prázdné.");
-            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {
+            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
                 System.out.println("Jméno smí obsahovat pouze písmena.");
                 jmeno = "";
             }
@@ -76,7 +76,7 @@ public class VstupUzivatele {
             prijmeni = scanner.nextLine().trim();
             if (prijmeni.isEmpty()) {
                 System.out.println("Příjmení nesmí být prázdné.");
-            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {
+            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
                 System.out.println("Příjmení smí obsahovat pouze písmena.");
                 prijmeni = "";
             }
@@ -107,7 +107,7 @@ public class VstupUzivatele {
             if (telefon.isEmpty()) {
                 System.out.println("Telefon nesmí být prázdný.");
                 validni = false;
-            } else if (!telefon.matches("\\d{9,13}")) {
+            } else if (!telefon.matches("\\d{9,13}")) {   //kontrola pomocí regulárního výrazu
                 System.out.println("Telefon musí obsahovat pouze číslice (9 až 13 znaků).");
                 validni = false;
             }
@@ -144,7 +144,7 @@ public class VstupUzivatele {
             jmeno = scanner.nextLine().trim();
             if (jmeno.isEmpty()) {
                 System.out.println("Jméno nesmí být prázdné.");
-            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {
+            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
                 System.out.println("Jméno smí obsahovat pouze písmena.");
                 jmeno = "";
             }
@@ -157,7 +157,7 @@ public class VstupUzivatele {
             prijmeni = scanner.nextLine().trim();
             if (prijmeni.isEmpty()) {
                 System.out.println("Příjmení nesmí být prázdné.");
-            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {
+            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
                 System.out.println("Příjmení smí obsahovat pouze písmena.");
                 prijmeni = "";
             }
