@@ -13,6 +13,7 @@ public class VstupUzivatele {
 
     /**
      * Spustí hlavní menu aplikace, umožní uživateli vybírat akce.
+     *
      * @param aplikace instance třídy Aplikace, která spravuje data
      */
     public void spustMenu(Aplikace aplikace) {
@@ -40,7 +41,7 @@ public class VstupUzivatele {
                     vypisPojistene(aplikace);
                     break;
                 case "3":
-                    vyhledatPojisteneho(aplikace);
+                    vyhledejPojisteneho(aplikace);
                     break;
                 case "4":
                     System.out.println("Ukončil jsi správu pojištěných. Děkuji za použití mé aplikace.");
@@ -57,30 +58,10 @@ public class VstupUzivatele {
      */
     private void pridejPojisteneho(Aplikace aplikace) {
         // Získání a ověření jména
-        String jmeno;
-        do {
-            System.out.print("Zadej jméno: ");
-            jmeno = scanner.nextLine().trim();
-            if (jmeno.isEmpty()) {
-                System.out.println("Jméno nesmí být prázdné.");
-            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
-                System.out.println("Jméno smí obsahovat pouze písmena.");
-                jmeno = "";
-            }
-        } while (jmeno.isEmpty());
+        String jmeno = validujJmeno("jméno");
 
         // Získání a ověření příjmení
-        String prijmeni;
-        do {
-            System.out.print("Zadej příjmení: ");
-            prijmeni = scanner.nextLine().trim();
-            if (prijmeni.isEmpty()) {
-                System.out.println("Příjmení nesmí být prázdné.");
-            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
-                System.out.println("Příjmení smí obsahovat pouze písmena.");
-                prijmeni = "";
-            }
-        } while (prijmeni.isEmpty());
+        String prijmeni = validujJmeno("příjmení");
 
         // Získání a ověření věku
         int vek = -1;
@@ -113,10 +94,10 @@ public class VstupUzivatele {
             }
         } while (!validni);
 
-        System.out.println("Volám aplikace.pridejPojisteneho");
         aplikace.pridejPojisteneho(jmeno, prijmeni, vek, telefon);
         System.out.println("Pojištěný byl úspěšně přidán.");
     }
+
 
     /**
      * Vypíše všechny pojištěné osoby uložené v aplikaci.
@@ -124,7 +105,7 @@ public class VstupUzivatele {
     private void vypisPojistene(Aplikace aplikace) {
         System.out.println("Seznam pojištěných:");
         ArrayList<PojistenaOsoba> seznam = aplikace.vypisPojistene();
-        if(seznam.isEmpty()) {
+        if (seznam.isEmpty()) {
             System.out.println("Žádné osoby nejsou evidovány.");
         } else {
             for (PojistenaOsoba osoba : seznam) {
@@ -136,35 +117,15 @@ public class VstupUzivatele {
     /**
      * Umožní uživateli vyhledat osobu podle jména a příjmení.
      */
-    private void vyhledatPojisteneho(Aplikace aplikace) {
+    private void vyhledejPojisteneho(Aplikace aplikace) {
         // Získání a ověření jména
-        String jmeno;
-        do {
-            System.out.print("Zadej jméno: ");
-            jmeno = scanner.nextLine().trim();
-            if (jmeno.isEmpty()) {
-                System.out.println("Jméno nesmí být prázdné.");
-            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
-                System.out.println("Jméno smí obsahovat pouze písmena.");
-                jmeno = "";
-            }
-        } while (jmeno.isEmpty());
+        String jmeno = validujJmeno("jméno");
 
         // Získání a ověření příjmení
-        String prijmeni;
-        do {
-            System.out.print("Zadej příjmení: ");
-            prijmeni = scanner.nextLine().trim();
-            if (prijmeni.isEmpty()) {
-                System.out.println("Příjmení nesmí být prázdné.");
-            } else if (!prijmeni.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
-                System.out.println("Příjmení smí obsahovat pouze písmena.");
-                prijmeni = "";
-            }
-        } while (prijmeni.isEmpty());
+        String prijmeni = validujJmeno("příjmení");
 
         // Vyhledání osob
-        ArrayList<PojistenaOsoba> nalezeni = aplikace.vyhledatPojisteneho(jmeno, prijmeni);
+        ArrayList<PojistenaOsoba> nalezeni = aplikace.vyhledejPojisteneho(jmeno, prijmeni);
         if (nalezeni.isEmpty()) {
             System.out.println("Žádná osoba nebyla nalezena.");
         } else {
@@ -172,5 +133,21 @@ public class VstupUzivatele {
                 System.out.println(osoba);
             }
         }
+    }
+
+
+    private String validujJmeno(String typJmena) {
+        String jmeno;
+        do {
+            System.out.print("Zadej " + typJmena + ": ");
+            jmeno = scanner.nextLine().trim();
+            if (jmeno.isEmpty()) {
+                System.out.println(typJmena + " nesmí být prázdné.");
+            } else if (!jmeno.matches("[a-zA-Zá-žÁ-Ž]+")) {   //kontrola pomocí regulárního výrazu
+                System.out.println(typJmena + " smí obsahovat pouze písmena.");
+                jmeno = "";
+            }
+        } while (jmeno.isEmpty());
+        return jmeno;
     }
 }

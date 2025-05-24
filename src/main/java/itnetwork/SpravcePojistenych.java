@@ -1,7 +1,6 @@
 package itnetwork;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Třída SpravcePojistenych slouží jako správce seznamu pojištěných osob.
@@ -25,8 +24,7 @@ public class SpravcePojistenych {
      * @param vek Věk pojištěné osoby
      * @param telefonniCislo Telefonní číslo pojištěné osoby
      */
-    public void pridatPojisteneho(String jmeno, String prijmeni, int vek, String telefonniCislo) {
-        System.out.println("Přidávám pojištěného: " + jmeno + " " + prijmeni);
+    public void pridejPojisteneho(String jmeno, String prijmeni, int vek, String telefonniCislo) {
         pojisteneOsoby.add(new PojistenaOsoba(jmeno, prijmeni, vek, telefonniCislo));
     }
 
@@ -38,7 +36,7 @@ public class SpravcePojistenych {
      * @param prijmeni Příjmení hledané osoby
      * @return Seznam nalezených pojištěných osob odpovídajících zadaným údajům
      */
-    public ArrayList<PojistenaOsoba> vyhledatPojisteneho(String jmeno, String prijmeni) {
+    public ArrayList<PojistenaOsoba> vyhledejPojisteneho(String jmeno, String prijmeni) {
         ArrayList<PojistenaOsoba> nalezene = new ArrayList<>();
 
         // Prochází seznam pojištěných a hledá osoby, které odpovídají zadaným údajům
@@ -55,7 +53,7 @@ public class SpravcePojistenych {
      *
      * @return Seznam všech pojištěných osob
      */
-    public ArrayList<PojistenaOsoba> zobrazitSeznamPojistenych() {
+    public ArrayList<PojistenaOsoba> zobrazSeznamPojistenych() {
         return pojisteneOsoby;
     }
 }

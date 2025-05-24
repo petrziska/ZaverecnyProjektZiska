@@ -1,7 +1,6 @@
 package itnetwork;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Třída Aplikace slouží jako prostředník mezi uživatelským rozhraním
@@ -28,8 +27,10 @@ public class Aplikace {
      * @param telefon  Telefonní číslo pojištěného
      */
     public void pridejPojisteneho(String jmeno, String prijmeni, int vek, String telefon) {
+        System.out.println();
+        System.out.println("Přidávám pojištěného: " + jmeno + " " + prijmeni);
         // Přidá nového pojištěného do seznamu
-        spravcePojistenych.pridatPojisteneho(jmeno, prijmeni, vek, telefon);
+        spravcePojistenych.pridejPojisteneho(jmeno, prijmeni, vek, telefon);
     }
 
     /**
@@ -38,7 +39,7 @@ public class Aplikace {
      * @return Seznam pojištěných osob jako ArrayList
      */
     public ArrayList<PojistenaOsoba> vypisPojistene() {
-        return spravcePojistenych.zobrazitSeznamPojistenych();
+        return spravcePojistenych.zobrazSeznamPojistenych();
     }
 
     /**
@@ -48,8 +49,9 @@ public class Aplikace {
      * @param prijmeni Příjmení hledané osoby
      * @return Seznam nalezených osob jako ArrayList
      */
-    public ArrayList<PojistenaOsoba> vyhledatPojisteneho(String jmeno, String prijmeni) {
-        return spravcePojistenych.vyhledatPojisteneho(jmeno, prijmeni);
+    public ArrayList<PojistenaOsoba> vyhledejPojisteneho(String jmeno, String prijmeni) {
+        System.out.println("Nalezen pojištěný:");
+        return spravcePojistenych.vyhledejPojisteneho(jmeno, prijmeni);
     }
 
     /**
